@@ -53,6 +53,37 @@ const updateNodeTool: FunctionDeclaration = {
   }
 };
 
+const addRiskTool: FunctionDeclaration = {
+  name: 'add_risk',
+  description: 'Add a Risk to a specific Node or Edge. Returns a riskId to add controls to.',
+  parameters: {
+    type: Type.OBJECT,
+    properties: {
+      targetId: { type: Type.STRING, description: 'ID of the Node or Edge to add the risk to' },
+      targetType: { type: Type.STRING, description: 'Either "NODE" or "EDGE"' },
+      name: { type: Type.STRING, description: 'Name of the risk' },
+      description: { type: Type.STRING, description: 'Description of the risk' },
+    },
+    required: ['targetId', 'targetType', 'name']
+  }
+};
+
+const addControlTool: FunctionDeclaration = {
+  name: 'add_control',
+  description: 'Add a Control to a specific Risk on a Node or Edge.',
+  parameters: {
+    type: Type.OBJECT,
+    properties: {
+      targetId: { type: Type.STRING, description: 'ID of the Node or Edge containing the risk' },
+      targetType: { type: Type.STRING, description: 'Either "NODE" or "EDGE"' },
+      riskName: { type: Type.STRING, description: 'The exact name of the Risk to attach this control to' },
+      name: { type: Type.STRING, description: 'Name of the control' },
+      description: { type: Type.STRING, description: 'Description of the control' }
+    },
+    required: ['targetId', 'targetType', 'riskName', 'name']
+  }
+};
+
 const clearGraphTool: FunctionDeclaration = {
   name: 'clear_graph',
   description: 'Delete all nodes and edges to start with an empty canvas.',
@@ -106,7 +137,14 @@ export const generateProcessResponse = async (
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
         tools: [{
-          functionDeclarations: [addNodeTool, connectNodesTool, updateNodeTool, clearGraphTool]
+          functionDeclarations: [
+            addNodeTool, 
+            connectNodesTool, 
+            updateNodeTool, 
+            clearGraphTool, 
+            addRiskTool, 
+            addControlTool
+          ]
         }]
       }
     });

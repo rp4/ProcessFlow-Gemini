@@ -2,17 +2,32 @@ export enum NodeType {
   PROCESS_STEP = 'PROCESS_STEP'
 }
 
+export interface Control {
+  id: string;
+  name: string;
+  description?: string;
+}
+
+export interface Risk {
+  id: string;
+  name: string;
+  description?: string;
+  controls: Control[];
+}
+
 export interface ProcessNodeData {
-  id: string; // Kept for reference in data
+  id: string;
   type: NodeType;
   title: string;
   description?: string;
-  // Update to accept new values
-  onEdit?: (id: string, newTitle: string, newDescription: string) => void;
+  risks: Risk[];
+  // Updated to accept partial data update
+  onEdit?: (id: string, data: Partial<ProcessNodeData>) => void;
 }
 
 export interface EdgeData {
   label?: string;
+  risks?: Risk[];
 }
 
 export enum MessageRole {
