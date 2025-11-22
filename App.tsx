@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Waves } from 'lucide-react';
 import BowTieGraph from './components/BowTieGraph';
 import ChatInterface from './components/ChatInterface';
 import { INITIAL_REACTFLOW_NODES, INITIAL_REACTFLOW_EDGES } from './constants';
@@ -387,7 +388,7 @@ const App: React.FC = () => {
         <div className="h-16 flex items-center px-8 justify-between">
            <div className="flex items-center gap-3">
              <div className="w-9 h-9 bg-slate-900 rounded-lg flex items-center justify-center shadow-lg shadow-slate-400/20">
-               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+               <Waves className="w-5 h-5 text-white" />
              </div>
              <div>
                 <h1 className="text-xl font-bold text-slate-800 tracking-tight leading-none">Process Flow</h1>
