@@ -25,7 +25,7 @@ const App: React.FC = () => {
     {
       id: 'init-1',
       role: MessageRole.MODEL,
-      content: "Welcome to ProcessFlow AI for Auditors. \n\nUpload a procedure to generate a flowchart, then identify risks and controls.",
+      content: "Welcome to Process Flow. \n\nUpload a procedure to generate a flowchart, then identify risks and controls.",
       type: ContentType.TEXT,
       timestamp: Date.now()
     }
@@ -142,7 +142,7 @@ const App: React.FC = () => {
       {
         id: 'init-1',
         role: MessageRole.MODEL,
-        content: "Welcome to ProcessFlow AI for Auditors.",
+        content: "Welcome to Process Flow.",
         type: ContentType.TEXT,
         timestamp: Date.now()
       }
@@ -327,7 +327,7 @@ const App: React.FC = () => {
       metadata: {
         version: '2.0',
         timestamp: new Date().toISOString(),
-        appName: 'ProcessFlow AI - Audit Edition'
+        appName: 'Process Flow'
       },
       nodes,
       edges
@@ -390,8 +390,8 @@ const App: React.FC = () => {
                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
              </div>
              <div>
-                <h1 className="text-xl font-bold text-slate-800 tracking-tight leading-none">ProcessFlow AI</h1>
-                <span className="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Internal Audit</span>
+                <h1 className="text-xl font-bold text-slate-800 tracking-tight leading-none">Process Flow</h1>
+                <span className="text-[10px] font-medium text-slate-400 tracking-wider">by Auditor in the Loop</span>
              </div>
            </div>
            <div className="flex items-center gap-6">

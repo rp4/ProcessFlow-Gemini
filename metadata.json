@@ -1,5 +1,7 @@
 {
-  "name": "ProcessFlow AI",
+  "name": "Process Flow",
   "description": "AI-powered process flow visualization. Upload procedures or transcripts to automatically generate flowcharts.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "microphone"
+  ]
 }
