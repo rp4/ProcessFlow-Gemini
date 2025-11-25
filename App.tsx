@@ -32,8 +32,52 @@ const App: React.FC = () => {
   ]);
   const [isTyping, setIsTyping] = useState(false);
 
+  // Sidebar Resizing State
+  const [sidebarWidth, setSidebarWidth] = useState(400);
+  const [isResizing, setIsResizing] = useState(false);
+
   // File Input Ref for Import (Project Level)
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // --- Sidebar Resize Handlers ---
+
+  const startResizing = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsResizing(true);
+  }, []);
+
+  const stopResizing = useCallback(() => {
+    setIsResizing(false);
+  }, []);
+
+  const resize = useCallback(
+    (mouseMoveEvent: MouseEvent) => {
+      if (isResizing) {
+        const newWidth = document.body.clientWidth - mouseMoveEvent.clientX;
+        // Constraints: Min 300px, Max 800px or 60% of screen
+        if (newWidth >= 300 && newWidth <= Math.min(800, document.body.clientWidth * 0.6)) {
+          setSidebarWidth(newWidth);
+        }
+      }
+    },
+    [isResizing]
+  );
+
+  useEffect(() => {
+    if (isResizing) {
+      window.addEventListener("mousemove", resize);
+      window.addEventListener("mouseup", stopResizing);
+      document.body.style.cursor = "col-resize"; // Force cursor during resize
+      document.body.style.userSelect = "none";   // Prevent text selection
+    } else {
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    }
+    return () => {
+      window.removeEventListener("mousemove", resize);
+      window.removeEventListener("mouseup", stopResizing);
+    };
+  }, [isResizing, resize, stopResizing]);
 
   // --- Graph Manipulation Handlers ---
 
@@ -431,7 +475,7 @@ const App: React.FC = () => {
       <div className="flex-1 flex overflow-hidden">
         
         {/* MAIN CONTENT: Graph */}
-        <main className="flex-1 relative bg-slate-100">
+        <main className="flex-1 relative bg-slate-100 min-w-0">
           <BowTieGraph 
             nodes={nodes}
             edges={edges}
@@ -446,8 +490,21 @@ const App: React.FC = () => {
           />
         </main>
 
+        {/* Resizer Handle */}
+        <div
+          onMouseDown={startResizing}
+          className={`w-1 hover:w-1.5 cursor-col-resize bg-slate-200 hover:bg-blue-400 transition-all z-50 flex flex-col justify-center items-center group relative select-none ${isResizing ? 'w-1.5 bg-blue-500' : ''}`}
+          title="Drag to resize"
+        >
+             {/* Grip handle visual */}
+             <div className={`h-8 w-1 rounded-full transition-colors absolute ${isResizing ? 'bg-white' : 'bg-slate-400 group-hover:bg-white'}`}></div>
+        </div>
+
         {/* RIGHT SIDEBAR: Chat */}
-        <aside className="w-[400px] shrink-0 z-40 relative border-l border-slate-200 bg-white shadow-xl shadow-slate-200/50">
+        <aside 
+          style={{ width: sidebarWidth }}
+          className="shrink-0 z-40 relative border-l border-slate-200 bg-white shadow-xl shadow-slate-200/50 flex flex-col transition-none"
+        >
           <ChatInterface 
             messages={messages} 
             isTyping={isTyping} 
