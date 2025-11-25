@@ -177,11 +177,11 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, isTyping, onSen
         <div className="flex gap-2 mb-3 overflow-x-auto pb-1 scrollbar-hide">
           {SUGGESTION_CHIPS.map((chip) => (
             <button
-              key={chip}
-              onClick={() => onSuggestionClick(chip)}
+              key={chip.label}
+              onClick={() => onSuggestionClick(chip.prompt)}
               className="flex items-center whitespace-nowrap px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-medium hover:bg-blue-100 hover:shadow-sm transition-all border border-blue-100"
             >
-               {chip}
+               {chip.label}
             </button>
           ))}
         </div>
