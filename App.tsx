@@ -430,9 +430,7 @@ const App: React.FC = () => {
       <header className="h-auto bg-white border-b border-slate-200 flex flex-col shrink-0 z-30 shadow-sm">
         <div className="h-16 flex items-center px-8 justify-between">
            <div className="flex items-center gap-3">
-             <div className="w-9 h-9 bg-transparent rounded-lg flex items-center justify-center shadow-lg shadow-slate-400/20 overflow-hidden">
-               <img src="https://storage.googleapis.com/toolbox-478717-storage/branding/worker.png" alt="Process Flow" className="w-full h-full object-cover" />
-             </div>
+             <img src="https://storage.googleapis.com/toolbox-478717-storage/branding/worker.png" alt="Process Flow" className="w-10 h-10 object-contain" />
              <div>
                 <h1 className="text-xl font-bold text-slate-800 tracking-tight leading-none">Process Flow</h1>
                 <span className="text-[10px] font-medium text-slate-400 tracking-wider">by Auditor in the Loop</span>
