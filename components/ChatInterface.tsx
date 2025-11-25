@@ -114,7 +114,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, isTyping, onSen
   };
 
   return (
-    <div className="flex flex-col h-full bg-white border-t border-slate-200 shadow-2xl shadow-slate-400/10">
+    <div className="flex flex-col h-full bg-white">
       
       {/* Header */}
       <div className="h-10 border-b border-slate-100 flex items-center px-4 bg-slate-50 justify-between">
@@ -142,7 +142,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, isTyping, onSen
             className={`flex ${msg.role === MessageRole.USER ? 'justify-end' : 'justify-start'}`}
           >
             <div className={`
-              max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm flex flex-col gap-2
+              max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm flex flex-col gap-2
               ${msg.role === MessageRole.USER 
                 ? 'bg-slate-800 text-white rounded-br-none' 
                 : 'bg-slate-100 text-slate-800 rounded-bl-none border border-slate-200'}

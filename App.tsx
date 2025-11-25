@@ -427,33 +427,37 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {/* MAIN CONTENT: Graph */}
-      <main className="flex-1 relative overflow-hidden bg-slate-100">
-        <BowTieGraph 
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={handleConnect}
-          onAddNode={(type) => handleAddNode(type)} 
-          onUpdateNode={(id, title, description) => handleUpdateNode(id, { title, description })} // Legacy shim if needed, though passed as prop in RiskNode
-          onDeleteNode={handleDeleteNode}
-          onUpdateEdge={handleUpdateEdge}
-          onDeleteEdge={handleDeleteEdge}
-        />
-      </main>
+      {/* CONTENT WRAPPER */}
+      <div className="flex-1 flex overflow-hidden">
+        
+        {/* MAIN CONTENT: Graph */}
+        <main className="flex-1 relative bg-slate-100">
+          <BowTieGraph 
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={handleConnect}
+            onAddNode={(type) => handleAddNode(type)} 
+            onUpdateNode={(id, title, description) => handleUpdateNode(id, { title, description })} 
+            onDeleteNode={handleDeleteNode}
+            onUpdateEdge={handleUpdateEdge}
+            onDeleteEdge={handleDeleteEdge}
+          />
+        </main>
 
-      {/* BOTTOM: Chat */}
-      <section className="h-[40vh] shrink-0 z-40 relative border-t border-slate-200 shadow-[0_-4px_20px_-5px_rgba(0,0,0,0.05)]">
-        <ChatInterface 
-          messages={messages} 
-          isTyping={isTyping} 
-          onSendMessage={handleSendMessage}
-          onSuggestionClick={(text) => handleSendMessage(text)}
-          onClearChat={handleClearChat}
-        />
-      </section>
+        {/* RIGHT SIDEBAR: Chat */}
+        <aside className="w-[400px] shrink-0 z-40 relative border-l border-slate-200 bg-white shadow-xl shadow-slate-200/50">
+          <ChatInterface 
+            messages={messages} 
+            isTyping={isTyping} 
+            onSendMessage={handleSendMessage}
+            onSuggestionClick={(text) => handleSendMessage(text)}
+            onClearChat={handleClearChat}
+          />
+        </aside>
 
+      </div>
     </div>
   );
 };
